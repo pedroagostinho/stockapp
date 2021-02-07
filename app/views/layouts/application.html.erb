@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Stockapp</title>
+    <title>StockRadar</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,6 +15,8 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <div class="page-structure">
+      <%= yield %>
+    </div>
   </body>
 </html>

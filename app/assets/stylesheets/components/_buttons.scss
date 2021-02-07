@@ -1,0 +1,14 @@
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: $stockradar;
+  transition: all 0.8s ease;
+  opacity: 0.8;
+}
+
+.btn-flat:hover {
+  background: $stockradar;
+  color: white;
+  opacity: 1;
+}
