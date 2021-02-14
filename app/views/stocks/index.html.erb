@@ -1,4 +1,34 @@
-<h1>Stocks#index</h1>
-<p>Find me in app/views/stocks/index.html.erb</p>
+<div class="nav-search">
+  <%= form_tag stocks_path, method: :get do %>
+    <div class="form-inline search-form">
+      <%= text_field_tag :search, params[:search], class: "form-control", 'aria-label': "Search a stock", placeholder: "Procura uma empresa..." %>
 
-<%= @stocks %>
+      <%= button_tag(type: "submit", class: "search-btn", aria: { label: "Search button" }) do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+  <% end %>
+  <br><br>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <% @stocks.each do |stock| %>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
+
+        <div class="card-product">
+          <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
+          <div class="card-product-infos">
+            <h2><%= stock.values.second %></h2>
+            <p><%= stock.values.first %></p>
+            <br>
+            <p><span><%= stock.values[3] %></span></p>
+          </div>
+          <i class="far fa-lg fa-plus-square"></i>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

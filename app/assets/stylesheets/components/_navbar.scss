@@ -11,3 +11,9 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+@media (max-width: 576px) {
+  .navbar-expand-sm .navbar-nav .dropdown-menu {
+    position: absolute !important;
+  }
+}
