@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :secret_key, inclusion: { in: [ ENV["SECRET_KEY"]] }
 
+  has_many :user_stocks
+  has_many :stocks, through: :user_stocks
   has_one_attached :photo
 
   def validate_photo

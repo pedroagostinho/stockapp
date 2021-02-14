@@ -1,0 +1,31 @@
+<% if controller_name == 'stocks' && action_name == 'index' %>
+  <div class="card-product">
+    <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
+    <div class="card-product-infos">
+      <h2><%= stock.values.second %></h2>
+      <p><%= stock.values.first %></p>
+      <br>
+      <p><span><%= stock.values[3] %></span></p>
+    </div>
+
+    <%= link_to stocks_add_stock_path(stock), class: "" do %>
+      <i class="far fa-lg fa-plus-square"></i>
+    <% end %>
+  </div>
+
+<% else %>
+  <div class="card-product">
+    <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
+    <div class="card-product-infos">
+      <h2><%= stock.name %></h2>
+      <p><%= stock.ticker %></p>
+      <br>
+      <p><span><%= stock.region %></span></p>
+    </div>
+
+    <%#= link_to stocks_add_stock_path(stock), class: "" do %>
+      <!-- <i class="far fa-lg fa-plus-square"></i> -->
+    <%# end %>
+  </div>
+
+<% end %>

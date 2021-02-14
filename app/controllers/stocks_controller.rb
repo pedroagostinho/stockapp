@@ -29,9 +29,33 @@ class StocksController < ApplicationController
 
     # stock_name = stock.output.first[1].first.values.second
     # stock_ticker = stock.output.first[1].first.values.first
+  end
 
+  def add_stock
+    selected_stock = params.values
+
+    stock = Stock.where(ticker: selected_stock.first)
+
+    if stock.empty?
+      new_stock = Stock.new(name: selected_stock.second, ticker: selected_stock.first, region: selected_stock[3])
+      new_stock.save
+
+      user_stock = UserStock.new(user: current_user, stock: new_stock)
+      user_stock.save
+
+    else
+      user_stock = UserStock.where(user: current_user, stock: stock.first)
+
+      if user_stock.empty?
+        user_stock = UserStock.new(user: current_user, stock: stock.first)
+        user_stock.save
+      end
+    end
+
+    redirect_to my_stocks_path
   end
 
   def my_stocks
+    @my_stocks = current_user.stocks
   end
 end

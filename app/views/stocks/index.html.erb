@@ -16,17 +16,7 @@
 
     <% @stocks.each do |stock| %>
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
-
-        <div class="card-product">
-          <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
-          <div class="card-product-infos">
-            <h2><%= stock.values.second %></h2>
-            <p><%= stock.values.first %></p>
-            <br>
-            <p><span><%= stock.values[3] %></span></p>
-          </div>
-          <i class="far fa-lg fa-plus-square"></i>
-        </div>
+        <%= render "shared/stock_card", stock: stock %>
       </div>
     <% end %>
 

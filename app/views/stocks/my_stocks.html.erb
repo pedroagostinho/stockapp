@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+
+    <% @my_stocks.each do |stock| %>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
+        <%= render "shared/stock_card", stock: stock %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
