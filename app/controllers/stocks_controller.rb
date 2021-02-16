@@ -37,7 +37,7 @@ class StocksController < ApplicationController
     stock = Stock.where(ticker: selected_stock.first)
 
     if stock.empty?
-      new_stock = Stock.new(name: selected_stock.second, ticker: selected_stock.first, region: selected_stock[3])
+      new_stock = Stock.new(name: selected_stock.second, ticker: selected_stock.first, region: selected_stock[3], currency: selected_stock[7])
       new_stock.save
 
       user_stock = UserStock.new(user: current_user, stock: new_stock)
@@ -57,5 +57,7 @@ class StocksController < ApplicationController
 
   def my_stocks
     @my_stocks = current_user.stocks
+
+    @my_stocks.each(&:update_stock).sort_by! { |stock| [-stock.price_score] }
   end
 end

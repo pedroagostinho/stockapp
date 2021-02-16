@@ -8,7 +8,7 @@
       <p><span><%= stock.values[3] %></span></p>
     </div>
 
-    <%= link_to stocks_add_stock_path(stock), class: "" do %>
+    <%= link_to stocks_add_stock_path(stock), class: "add-stock" do %>
       <i class="far fa-lg fa-plus-square"></i>
     <% end %>
   </div>
@@ -23,9 +23,34 @@
       <p><span><%= stock.region %></span></p>
     </div>
 
-    <%#= link_to stocks_add_stock_path(stock), class: "" do %>
-      <!-- <i class="far fa-lg fa-plus-square"></i> -->
-    <%# end %>
+
+    <%= link_to user_stock_path(stock), class: "delete-stock", method: :delete, data: { confirm: "Are you sure?" } do %>
+      <i class="far fa-lg fa-minus-square"></i>
+    <% end %>
+
+    <div class="stars">
+      <% cycles = stock.price_score.round %>
+      <% cycles.times do |i| %>
+        <% style = i + 1 == Stock::MAX_SCORE ? "margin-right: 16px" : "" %>
+        <i class="fas fa-star" style="<%= style %>"></i>
+      <% end %>
+
+      <% (Stock::MAX_SCORE - cycles).times do |i| %>
+        <% style = i + 1 == (Stock::MAX_SCORE - cycles) ? "margin-right: 16px" : "" %>
+        <i class="far fa-star" style="<%= style %>"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card-product-bottom">
+    <div class="card-product-bottom-price-volume">
+      <p><small>Price: </small><%= number_with_precision(stock.price, precision: 2, delimiter: ' ') %> <%= stock.currency %></p>
+      <p><small>Volume: </small><%= number_with_precision(stock.volume, precision: 0, delimiter: ' ') %></p>
+    </div>
+    <div class="card-product-bottom-scores">
+      <p><small>Price score: </small><%= number_with_precision(stock.price_score, precision: 2, delimiter: ' ') %> / <%= Stock::MAX_SCORE %> </p>
+      <p><small>Hype ratio: </small><%= (stock.hype_score * 100).round %>% </p>
+    </div>
   </div>
 
 <% end %>

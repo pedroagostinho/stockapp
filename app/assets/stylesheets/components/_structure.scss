@@ -3,6 +3,10 @@
   margin-top: calc(3rem + 80px);
 }
 
+.centered-text {
+  text-align: center;
+}
+
 @media (max-width: 576px) {
   .page-structure {
     margin: 3rem 0;

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'stocks#my_stocks'
 
   resources :stocks, only: [:index]
+  resources :user_stocks, only: [:destroy]
 
   get 'stocks/my_stocks', to: "stocks#my_stocks", as: "my_stocks"
   get 'stocks/add_stock'

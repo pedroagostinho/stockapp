@@ -1,7 +1,7 @@
 <div class="nav-search">
   <%= form_tag stocks_path, method: :get do %>
     <div class="form-inline search-form">
-      <%= text_field_tag :search, params[:search], class: "form-control", 'aria-label': "Search a stock", placeholder: "Procura uma empresa..." %>
+      <%= text_field_tag :search, params[:search], class: "form-control", 'aria-label': "Search a stock", placeholder: "Search stocks..." %>
 
       <%= button_tag(type: "submit", class: "search-btn", aria: { label: "Search button" }) do %>
         <i class="fas fa-search"></i>

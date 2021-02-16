@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_145848) do
+ActiveRecord::Schema.define(version: 2021_02_16_163006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,11 +45,24 @@ ActiveRecord::Schema.define(version: 2021_02_14_145848) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
-    t.float "last_price"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "region"
+    t.integer "volume"
+    t.string "currency"
+    t.float "min_price"
+    t.datetime "min_price_date"
+    t.float "max_price"
+    t.datetime "max_price_date"
+    t.integer "min_volume"
+    t.datetime "min_volume_date"
+    t.integer "max_volume"
+    t.datetime "max_volume_date"
+    t.float "avg_volume"
+    t.float "price_score"
+    t.float "hype_score"
   end
 
   create_table "user_stocks", force: :cascade do |t|
@@ -57,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_145848) do
     t.bigint "stock_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["stock_id"], name: "index_user_stocks_on_stock_id"
     t.index ["user_id"], name: "index_user_stocks_on_user_id"
   end
