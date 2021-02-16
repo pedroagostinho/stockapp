@@ -49,6 +49,13 @@
       <p><small>Price score: </small><%= number_with_precision(stock.price_score, precision: 2, delimiter: ' ') %> / <%= Stock::MAX_SCORE %> </p>
       <p><small>Hype ratio: </small><%= (stock.hype_score * 100).round %>% </p>
     </div>
+    <div class="card-product-refresh">
+      <%= link_to stocks_refresh_stock_path(stock), class: "" do %>
+        <i class="fas fa-lg fa-sync"></i>
+      <% end %>
+      <p><small>Updated at: </small><%= stock.updated_at.strftime("%d-%m-%y @ %H:%M") %></p>
+    </div>
   </div>
+
 
 <% end %>

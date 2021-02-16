@@ -39,6 +39,7 @@ class StocksController < ApplicationController
     if stock.empty?
       new_stock = Stock.new(name: selected_stock.second, ticker: selected_stock.first, region: selected_stock[3], currency: selected_stock[7])
       new_stock.save
+      new_stock.update_stock
 
       user_stock = UserStock.new(user: current_user, stock: new_stock)
       user_stock.save
@@ -55,9 +56,17 @@ class StocksController < ApplicationController
     redirect_to my_stocks_path
   end
 
-  def my_stocks
-    @my_stocks = current_user.stocks
+  def refresh_stock
+    stock = Stock.find(params[:format])
+    stock.update_stock
 
-    @my_stocks.each(&:update_stock).sort_by! { |stock| [-stock.price_score] }
+    redirect_to my_stocks_path
+  end
+
+  def my_stocks
+    stocks = current_user.stocks
+
+    # @my_stocks.each(&:update_stock).sort_by! { |stock| [-stock.price_score] }
+    @my_stocks = stocks.order(price_score: :desc)
   end
 end
