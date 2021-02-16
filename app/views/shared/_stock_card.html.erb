@@ -47,7 +47,8 @@
     </div>
     <div class="card-product-bottom-scores">
       <p><small>Price score: </small><%= number_with_precision(stock.price_score, precision: 2, delimiter: ' ') %> / <%= Stock::MAX_SCORE %> </p>
-      <p><small>Hype ratio: </small><%= (stock.hype_score * 100).round %>% </p>
+        <% stock_hype_score = stock.hype_score.nil? ? 0 : stock.hype_score * 100 %>
+      <p><small>Hype ratio: </small><%= (stock_hype_score).round %>% </p>
     </div>
     <div class="card-product-refresh">
       <%= link_to stocks_refresh_stock_path(stock), class: "" do %>
