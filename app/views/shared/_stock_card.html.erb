@@ -31,13 +31,11 @@
     <div class="stars">
       <% cycles = stock.price_score.round %>
       <% cycles.times do |i| %>
-        <% style = i + 1 == Stock::MAX_SCORE ? "margin-right: 16px" : "" %>
-        <i class="fas fa-star" style="<%= style %>"></i>
+        <i class="fas fa-star"></i>
       <% end %>
 
       <% (Stock::MAX_SCORE - cycles).times do |i| %>
-        <% style = i + 1 == (Stock::MAX_SCORE - cycles) ? "margin-right: 16px" : "" %>
-        <i class="far fa-star" style="<%= style %>"></i>
+        <i class="far fa-star"></i>
       <% end %>
     </div>
   </div>

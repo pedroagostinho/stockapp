@@ -46,8 +46,10 @@
     color: $stockradar-red;
   }
 
-  .stars i {
-    margin-bottom: 16px;
+  .stars {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
   }
 
   .stars .fas {
