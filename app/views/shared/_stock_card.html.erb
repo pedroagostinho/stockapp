@@ -1,12 +1,15 @@
 <% if controller_name == 'stocks' && action_name == 'index' %>
+  <%#= render "stocks/show", stock: stock.values.first %>
+
   <div class="card-product">
-    <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
-    <div class="card-product-infos">
-      <h2><%= stock.values.second %></h2>
-      <p><%= stock.values.first %></p>
-      <br>
-      <p><span><%= stock.values[3] %></span></p>
-    </div>
+    <%#= link_to "#", data: { toggle: "modal", target: "#modal-#{stock.values.first}" } do %>
+      <div class="card-product-infos">
+        <h2><%= stock.values.second %></h2>
+        <p><%= stock.values.first %></p>
+        <br>
+        <p><span><%= stock.values[3] %></span></p>
+      </div>
+    <%# end %>
 
     <%= link_to stocks_add_stock_path(stock), class: "add-stock" do %>
       <i class="far fa-lg fa-plus-square"></i>
@@ -14,14 +17,17 @@
   </div>
 
 <% else %>
+  <%#= render "stocks/show", stock: stock.ticker %>
+
   <div class="card-product">
-    <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
-    <div class="card-product-infos">
-      <h2><%= stock.name %></h2>
-      <p><%= stock.ticker %></p>
-      <br>
-      <p><span><%= stock.region %></span></p>
-    </div>
+    <%#= link_to "#", data: { toggle: "modal", target: "#modal-#{stock.ticker}" } do %>
+      <div class="card-product-infos">
+        <h2><%= stock.name %></h2>
+        <p><%= stock.ticker %></p>
+        <br>
+        <p><span><%= stock.region %></span></p>
+      </div>
+    <%# end %>
 
 
     <%= link_to user_stock_path(stock), class: "delete-stock", method: :delete, data: { confirm: "Are you sure?" } do %>
@@ -57,6 +63,5 @@
       <p><small>Updated at: </small><%= stock.updated_at.strftime("%d-%m-%y @ %H:%M") %></p>
     </div>
   </div>
-
 
 <% end %>
