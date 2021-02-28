@@ -68,9 +68,9 @@ class Stock < ApplicationRecord
 
     update(min_volume: min_volume, min_volume_date: min_volume_date, max_volume: max_volume, max_volume_date: max_volume_date, avg_volume: avg_volume)
 
-    update_fundamentals
-
     calculate_price_score
     calculate_hype_score
+
+    update_fundamentals
   end
 end
