@@ -17,17 +17,17 @@
   </div>
 
 <% else %>
-  <%#= render "stocks/show", stock: stock.ticker %>
+  <%= render "stocks/show", stock: stock %>
 
   <div class="card-product">
-    <%#= link_to "#", data: { toggle: "modal", target: "#modal-#{stock.ticker}" } do %>
+    <%= link_to "#", data: { toggle: "modal", target: "#modal-#{stock.id}" } do %>
       <div class="card-product-infos">
         <h2><%= stock.name %></h2>
         <p><%= stock.ticker %></p>
         <br>
         <p><span><%= stock.region %></span></p>
       </div>
-    <%# end %>
+    <% end %>
 
 
     <%= link_to user_stock_path(stock), class: "delete-stock", method: :delete, data: { confirm: "Are you sure?" } do %>
@@ -53,7 +53,7 @@
     </div>
     <div class="card-product-bottom-scores">
       <p><small>Price score: </small><%= number_with_precision(stock.price_score, precision: 2, delimiter: ' ') %> / <%= Stock::MAX_SCORE %> </p>
-        <% stock_hype_score = stock.hype_score.nil? ? 0 : stock.hype_score * 100 %>
+        <% stock_hype_score = (stock.hype_score.nil? || !stock.hype_score.finite?) ? 0 : stock.hype_score * 100 %>
       <p><small>Hype ratio: </small><%= (stock_hype_score).round %>% </p>
     </div>
     <div class="card-product-refresh">

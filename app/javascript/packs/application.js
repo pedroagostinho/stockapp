@@ -27,8 +27,18 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { scrollFunction, topFunction } from '../packs/btn_to_top';
+
+// Button to top
+const btnToTop = document.getElementById("btnToTop");
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  if (btnToTop !== null) {
+    btnToTop.addEventListener("click", (element) => {
+      event.preventDefault();
+      topFunction();
+    });
+  }
 });

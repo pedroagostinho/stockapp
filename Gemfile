@@ -32,6 +32,8 @@ gem 'devise'
 gem 'alphavantagerb'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

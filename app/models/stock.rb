@@ -18,6 +18,25 @@ class Stock < ApplicationRecord
     update(hype_score: hype_score)
   end
 
+  def update_fundamentals
+    require 'json'
+    require 'open-uri'
+
+    key = ENV["ALPHAVANTAGE_KEY"]
+    url = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=#{ticker}&apikey=#{key}"
+
+    company_overview_serialized = open(url).read
+    company_overview = JSON.parse(company_overview_serialized)
+
+    update(description: company_overview["Description"],
+           pe_ratio: company_overview["PERatio"].to_f,
+           peg_ratio: company_overview["PEGRatio"].to_f,
+           forward_pe: company_overview["ForwardPE"].to_f,
+           dividend_yield: company_overview["DividendYield"].to_f,
+           year_high: company_overview["52WeekHigh"].to_f,
+           year_low: company_overview["52WeekLow"].to_f)
+  end
+
   def update_stock
     key = ENV["ALPHAVANTAGE_KEY"]
     # client = Alphavantage::Client.new key: key
@@ -48,6 +67,8 @@ class Stock < ApplicationRecord
     avg_volume = volume_timeseries.values.sum(0.0) / volume_timeseries.values.size
 
     update(min_volume: min_volume, min_volume_date: min_volume_date, max_volume: max_volume, max_volume_date: max_volume_date, avg_volume: avg_volume)
+
+    update_fundamentals
 
     calculate_price_score
     calculate_hype_score

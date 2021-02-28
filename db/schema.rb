@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_163006) do
+ActiveRecord::Schema.define(version: 2021_02_28_163202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 2021_02_16_163006) do
     t.float "avg_volume"
     t.float "price_score"
     t.float "hype_score"
+    t.text "description"
+    t.float "pe_ratio"
+    t.float "peg_ratio"
+    t.float "forward_pe"
+    t.float "dividend_yield"
+    t.float "year_high"
+    t.float "year_low"
   end
 
   create_table "user_stocks", force: :cascade do |t|
@@ -85,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_163006) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "secret_key"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

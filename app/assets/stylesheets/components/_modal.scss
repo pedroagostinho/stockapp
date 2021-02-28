@@ -1,0 +1,19 @@
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: bold;
+
+  span {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: .7;
+    font-weight: lighter;
+  }
+}
