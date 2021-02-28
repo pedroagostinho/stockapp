@@ -25,7 +25,7 @@ class Stock < ApplicationRecord
     key = ENV["ALPHAVANTAGE_KEY"]
     url = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=#{ticker}&apikey=#{key}"
 
-    company_overview_serialized = open(url).read
+    company_overview_serialized = URI.open(url).read
     company_overview = JSON.parse(company_overview_serialized)
 
     update(description: company_overview["Description"],
