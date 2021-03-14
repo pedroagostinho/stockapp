@@ -56,6 +56,10 @@
         <% stock_hype_score = (stock.hype_score.nil? || !stock.hype_score.finite?) ? 0 : stock.hype_score * 100 %>
       <p><small>Hype ratio: </small><%= (stock_hype_score).round %>% </p>
     </div>
+    <div class="card-product-bottom-pe-ratios">
+      <p><small>P/E ratio: </small><%= number_with_precision(stock.pe_ratio, precision: 2, delimiter: ' ') %></p>
+      <p><small>Forward P/E: </small><%= number_with_precision(stock.forward_pe, precision: 2, delimiter: ' ') %></p>
+    </div>
     <div class="card-product-refresh">
       <%= link_to stocks_refresh_stock_path(stock), class: "" do %>
         <i class="fas fa-lg fa-sync"></i>
