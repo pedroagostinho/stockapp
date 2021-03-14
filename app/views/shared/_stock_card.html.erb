@@ -4,7 +4,8 @@
   <div class="card-product">
     <%#= link_to "#", data: { toggle: "modal", target: "#modal-#{stock.values.first}" } do %>
       <div class="card-product-infos">
-        <h2><%= stock.values.second %></h2>
+        <% stock.values.second.size > 25 ? stock_name = "#{stock.values.second.first(25)} <span>...</span>".html_safe : stock_name = stock.values.second %>
+        <h2><%= stock_name %></h2>
         <p><%= stock.values.first %></p>
         <br>
         <p><span><%= stock.values[3] %></span></p>
@@ -22,7 +23,8 @@
   <div class="card-product">
     <%= link_to "#", data: { toggle: "modal", target: "#modal-#{stock.id}" } do %>
       <div class="card-product-infos">
-        <h2><%= stock.name %></h2>
+        <% stock.name.size > 25 ? stock_name = "#{stock.name.first(25)} <span>...</span>".html_safe : stock_name = stock.name %>
+        <h2><%= stock_name %></h2>
         <p><%= stock.ticker %></p>
         <br>
         <p><span><%= stock.region %></span></p>

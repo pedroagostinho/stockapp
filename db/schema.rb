@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_163202) do
+ActiveRecord::Schema.define(version: 2021_03_14_163443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,10 @@ ActiveRecord::Schema.define(version: 2021_02_28_163202) do
     t.float "dividend_yield"
     t.float "year_high"
     t.float "year_low"
+    t.float "current_price_score"
+    t.float "pe_ratio_score"
+    t.float "pe_evolution_score"
+    t.float "score"
   end
 
   create_table "user_stocks", force: :cascade do |t|

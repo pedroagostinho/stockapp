@@ -6,6 +6,15 @@ class Stock < ApplicationRecord
   MAX_SCORE = 5
   MIN_SCORE = 1
 
+  def calculate_current_price_score
+    max_current_price = Stock.all.pluck(:price).max
+    min_current_price = Stock.all.pluck(:price).min
+
+    # (PRICE-MAX)*(5-1)/(MIN-MAX)+1
+    current_price_score = (price - max_current_price) * (MAX_SCORE - MIN_SCORE) / (min_current_price - max_current_price) + MIN_SCORE
+    update(current_price_score: current_price_score)
+  end
+
   def calculate_price_score
     # (PRICE-MAX)*(5-1)/(MIN-MAX)+1
     price_score = (price - max_price) * (MAX_SCORE - MIN_SCORE) / (min_price - max_price) + MIN_SCORE
@@ -16,6 +25,15 @@ class Stock < ApplicationRecord
     # (VOLUME-AVG)/VOLUME
     hype_score = (volume - avg_volume) / volume
     update(hype_score: hype_score)
+  end
+
+  def calculate_pe_ratio_score
+    max_pe_ratio = Stock.all.pluck(:pe_ratio).max
+    min_pe_ratio = Stock.all.pluck(:pe_ratio).min
+
+    # (PE RATIO-MAX)*(5-1)/(MIN-MAX)+1
+    pe_ratio_score = (pe_ratio - max_pe_ratio) * (MAX_SCORE - MIN_SCORE) / (min_pe_ratio - max_pe_ratio) + MIN_SCORE
+    update(pe_ratio_score: pe_ratio_score)
   end
 
   def update_fundamentals
@@ -70,6 +88,9 @@ class Stock < ApplicationRecord
 
     calculate_price_score
     calculate_hype_score
+
+    # calculate_current_price_score
+    # calculate_pe_ratio_score
 
     update_fundamentals
   end
