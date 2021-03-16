@@ -37,7 +37,7 @@
     <% end %>
 
     <div class="stars">
-      <% cycles = stock.price_score.nil? ? 0 : stock.price_score.round %>
+      <% cycles = (stock.price_score.nil? || stock.price_score.nan?) ? 0 : stock.price_score.round %>
       <% cycles.times do |i| %>
         <i class="fas fa-star"></i>
       <% end %>
