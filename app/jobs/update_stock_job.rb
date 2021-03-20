@@ -5,7 +5,7 @@ class UpdateStockJob < ApplicationJob
     puts "I'm starting the fake job"
     stock.all.each do |stock|
       stock.update_stock
-      sleep 60
+      sleep 30
     end
     puts "OK I'm done now"
   end

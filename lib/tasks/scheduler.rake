@@ -4,7 +4,7 @@ task update_stocks: :environment do
 
   Stock.all.each do |stock|
     stock.update_stock
-    sleep 60
+    sleep 30
   end
 
   puts "Stocks updated!"

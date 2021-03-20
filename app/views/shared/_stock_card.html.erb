@@ -48,7 +48,17 @@
     </div>
   </div>
 
-  <div class="card-product-bottom">
+  <% unless stock.pe_ratio_evolution.nil? %>
+    <% if stock.pe_ratio_evolution > 0 && stock.pe_ratio_evolution != stock.pe_ratio %>
+      <% pe_evolution = "positive-pe-evolution" %>
+    <% elsif stock.pe_ratio_evolution < 0 || stock.pe_ratio_evolution == stock.pe_ratio %>
+      <% pe_evolution = "negative-pe-evolution" %>
+    <% else %>
+      <% pe_evolution = "neutral-pe-evolution" %>
+    <% end %>
+  <% end %>
+
+  <div class="card-product-bottom <%= pe_evolution %>">
     <div class="card-product-bottom-price-volume">
       <p><small>Price: </small><%= number_with_precision(stock.price, precision: 2, delimiter: ' ') %> <%= stock.currency %></p>
       <p><small>Volume: </small><%= number_with_precision(stock.volume, precision: 0, delimiter: ' ') %></p>

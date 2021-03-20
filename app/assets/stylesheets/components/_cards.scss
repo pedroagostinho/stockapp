@@ -88,8 +88,8 @@
 .card-product-bottom {
   overflow: hidden;
   // height: 120px;
-  background: $stockradar;
   color: white;
+  background: $medium-gray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin: 1rem;
   margin-top: 0;
@@ -98,6 +98,18 @@
     font-size: 12px;
     line-height: 1.4;
   }
+}
+
+.positive-pe-evolution {
+  background: $stockradar;
+}
+
+.negative-pe-evolution {
+  background: $stockradar-red;
+}
+
+.neutral-pe-evolution {
+  background: $medium-gray;
 }
 
 .card-product-bottom-price-volume {

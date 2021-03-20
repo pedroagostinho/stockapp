@@ -6,15 +6,6 @@ class Stock < ApplicationRecord
   MAX_SCORE = 5
   MIN_SCORE = 1
 
-  def calculate_current_price_score
-    max_current_price = Stock.all.pluck(:price).max
-    min_current_price = Stock.all.pluck(:price).min
-
-    # (PRICE-MAX)*(5-1)/(MIN-MAX)+1
-    current_price_score = (price - max_current_price) * (MAX_SCORE - MIN_SCORE) / (min_current_price - max_current_price) + MIN_SCORE
-    update(current_price_score: current_price_score)
-  end
-
   def calculate_price_score
     # (PRICE-MAX)*(5-1)/(MIN-MAX)+1
     price_score = (price - max_price) * (MAX_SCORE - MIN_SCORE) / (min_price - max_price) + MIN_SCORE
@@ -25,6 +16,15 @@ class Stock < ApplicationRecord
     # (VOLUME-AVG)/VOLUME
     hype_score = (volume - avg_volume) / volume
     update(hype_score: hype_score)
+  end
+
+  def calculate_current_price_score
+    max_current_price = Stock.all.pluck(:price).max
+    min_current_price = Stock.all.pluck(:price).min
+
+    # (PRICE-MAX)*(5-1)/(MIN-MAX)+1
+    current_price_score = (price - max_current_price) * (MAX_SCORE - MIN_SCORE) / (min_current_price - max_current_price) + MIN_SCORE
+    update(current_price_score: current_price_score)
   end
 
   def calculate_pe_ratio_score
@@ -47,12 +47,17 @@ class Stock < ApplicationRecord
     company_overview = JSON.parse(company_overview_serialized)
 
     update(description: company_overview["Description"],
+           sector: company_overview["Sector"],
+           industry: company_overview["Industry"],
            pe_ratio: company_overview["PERatio"].to_f,
            peg_ratio: company_overview["PEGRatio"].to_f,
            forward_pe: company_overview["ForwardPE"].to_f,
            dividend_yield: company_overview["DividendYield"].to_f,
            year_high: company_overview["52WeekHigh"].to_f,
            year_low: company_overview["52WeekLow"].to_f)
+
+    pe_ratio_evolution = pe_ratio - forward_pe
+    update(pe_ratio_evolution: pe_ratio_evolution)
   end
 
   def update_stock
