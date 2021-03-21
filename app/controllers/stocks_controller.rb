@@ -68,5 +68,13 @@ class StocksController < ApplicationController
 
     # @my_stocks.each(&:update_stock).sort_by! { |stock| [-stock.price_score] }
     @my_stocks = stocks.order(price_score: :desc)
+
+    @start_time = stocks.pluck(:updated_at).min
+    finish_time = stocks.pluck(:updated_at).max
+
+
+    unless @start_time.nil?
+      @gap = ((finish_time - @start_time) / 60).round
+    end
   end
 end
