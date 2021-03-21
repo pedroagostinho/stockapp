@@ -36,6 +36,7 @@ task import_stocks: :environment do
 
     else
       puts "#{ticker} already existed..."
+      stock.first.update_stock
       user_stock = UserStock.where(user: pedro, stock: stock.first)
 
       if user_stock.empty?

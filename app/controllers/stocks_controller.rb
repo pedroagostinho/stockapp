@@ -45,6 +45,7 @@ class StocksController < ApplicationController
       user_stock.save
 
     else
+      stock.first.update_stock
       user_stock = UserStock.where(user: current_user, stock: stock.first)
 
       if user_stock.empty?

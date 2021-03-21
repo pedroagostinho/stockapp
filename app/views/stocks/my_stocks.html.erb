@@ -1,5 +1,5 @@
 <% unless @start_time.nil? %>
-  <p class="centered-text last-updated">Last updated at: <%= @start_time.strftime("%d-%m-%y @ %H:%M") %> (for <%= @gap %> minutes)</p>
+  <p class="centered-text last-updated"><%= "#{@my_stocks.count} #{@my_stocks.count == 1 ? "stock" : "stocks"}" %> last updated at: <%= @start_time.strftime("%d-%m-%y @ %H:%M") %> (for <%= @gap %> minutes)</p>
 <% end %>
 
 <div class="centered-text">
