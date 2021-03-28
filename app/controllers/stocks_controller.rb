@@ -37,7 +37,7 @@ class StocksController < ApplicationController
     stock = Stock.where(ticker: selected_stock.first)
 
     if stock.empty?
-      new_stock = Stock.new(name: selected_stock.second, ticker: selected_stock.first, region: selected_stock[3], currency: selected_stock[7])
+      new_stock = Stock.new(name: selected_stock.second, ticker: selected_stock.first, region: selected_stock[3], currency: selected_stock[7], update_id: Date.today.wday)
       new_stock.save
       new_stock.update_stock
 
