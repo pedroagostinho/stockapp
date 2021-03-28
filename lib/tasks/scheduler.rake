@@ -1,6 +1,6 @@
 desc "Update all stocks"
 task update_stocks: :environment do
-  puts "Udating stocks"
+  puts "Updating stocks"
 
   weekday = Date.today.wday
   stocks = Stock.where(update_id: weekday)
