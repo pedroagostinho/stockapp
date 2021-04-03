@@ -24,6 +24,7 @@
           <%#= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%#= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "<i class='fas fa-fire'></i> &nbsp; Hot stocks".html_safe, hot_stocks_path, class: "dropdown-item" %>
             <%= link_to "<i class='fas fa-briefcase'></i> &nbsp; My stocks".html_safe, my_stocks_path, class: "dropdown-item" %>
             <%= link_to "<i class='far fa-chart-bar'></i> &nbsp; Stocks".html_safe, stocks_path, class: "dropdown-item" %>
             <%= link_to "<i class='fas fa-sign-out-alt'></i> &nbsp; Log out".html_safe, destroy_user_session_path, method: :delete, class: "dropdown-item" %>

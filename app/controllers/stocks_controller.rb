@@ -73,6 +73,18 @@ class StocksController < ApplicationController
     @start_time = stocks.pluck(:updated_at).min
     @finish_time = stocks.pluck(:updated_at).max
 
+    unless @start_time.nil?
+      @gap = ((@finish_time - @start_time) / 60).round
+    end
+  end
+
+  def hot_stocks
+    stocks = current_user.stocks.where("pe_ratio_evolution > ?", 0)
+
+    @hot_stocks = stocks.order(price_score: :desc)
+
+    @start_time = stocks.pluck(:updated_at).min
+    @finish_time = stocks.pluck(:updated_at).max
 
     unless @start_time.nil?
       @gap = ((@finish_time - @start_time) / 60).round

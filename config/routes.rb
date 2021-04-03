@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :user_stocks, only: [:destroy]
 
   get 'stocks/my_stocks', to: "stocks#my_stocks", as: "my_stocks"
+  get 'stocks/hot_stocks', to: "stocks#hot_stocks", as: "hot_stocks"
   get 'stocks/add_stock'
   get 'stocks/refresh_stock'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -4,15 +4,34 @@
   margin-bottom: 2rem;
   border-radius: 4px;
   background: $stockradar;
+  border: 1px solid $stockradar;
   transition: all 0.8s ease;
   opacity: 0.8;
+
+  &:hover {
+    background: $stockradar;
+    color: white;
+    opacity: 1;
+  }
 }
 
-.btn-flat:hover {
-  background: $stockradar;
-  color: white;
-  opacity: 1;
+.btn-flat-opposite {
+  color: $stockradar;
+  padding: 8px 24px;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  background: white;
+  border: 1px solid $stockradar;
+  transition: all 0.8s ease;
+  opacity: 0.8;
+
+  &:hover {
+    background: white;
+    color: $stockradar;
+    opacity: 1;
+  }
 }
+
 
 .btn-to-top {
   text-align: center;

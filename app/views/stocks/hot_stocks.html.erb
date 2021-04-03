@@ -1,0 +1,25 @@
+<% unless @start_time.nil? %>
+  <p class="centered-text last-updated"><%= "#{@hot_stocks.count} #{@hot_stocks.count == 1 ? "stock" : "stocks"}" %> last updated from<br><%= @start_time.strftime("%d-%m-%y @ %H:%M") %> to <%= @finish_time.strftime("%d-%m-%y @ %H:%M") %></p>
+<% end %>
+
+<div class="centered-text">
+  <%= link_to stocks_path, class: "btn btn-flat" do %>
+    Search stocks
+  <% end %>
+
+  <%= link_to my_stocks_path, class: "btn btn-flat-opposite" do %>
+    <i class='fas fa-briefcase'></i> &nbsp; My stocks
+  <% end %>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <% @hot_stocks.each do |stock| %>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
+        <%= render "shared/stock_card", stock: stock %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
