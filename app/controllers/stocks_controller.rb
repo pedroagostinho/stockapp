@@ -79,7 +79,7 @@ class StocksController < ApplicationController
   end
 
   def hot_stocks
-    stocks = current_user.stocks.where("pe_ratio_evolution > ?", 0)
+    stocks = current_user.stocks.where("pe_ratio_evolution > ? and forward_pe != ?", 0, 0)
 
     @hot_stocks = stocks.order(price_score: :desc)
 
