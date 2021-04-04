@@ -2,6 +2,10 @@ class Stock < ApplicationRecord
   has_many :user_stocks
   has_many :users, through: :user_stocks
 
+  SECTORS = ["Consumer Cyclical", "Communication Services", "Financial Services",
+             "Technology", "Consumer Defensive", "Basic Materials", "Healthcare",
+             "Industrials", "Real Estate", "Utilities", "Energy"]
+
   ANALYSIS_DAYS = 2000
   MAX_SCORE = 5
   MIN_SCORE = 1
@@ -98,5 +102,33 @@ class Stock < ApplicationRecord
     # calculate_pe_ratio_score
 
     update_fundamentals
+  end
+
+  def sector_icon
+    if sector == SECTORS[0]
+      "<i class='fas fa-car'></i>".html_safe
+    elsif sector == SECTORS[1]
+      "<i class='fas fa-satellite-dish'></i>".html_safe
+    elsif sector == SECTORS[2]
+      "<i class='fas fa-coins'></i>".html_safe
+    elsif sector == SECTORS[3]
+      "<i class='fas fa-microchip'></i>".html_safe
+    elsif sector == SECTORS[4]
+      "<i class='fas fa-shopping-cart'></i>".html_safe
+    elsif sector == SECTORS[5]
+      "<i class='fas fa-tree'></i>".html_safe
+    elsif sector == SECTORS[6]
+      "<i class='fas fa-heartbeat'></i>".html_safe
+    elsif sector == SECTORS[7]
+      "<i class='fas fa-rocket'></i>".html_safe
+    elsif sector == SECTORS[8]
+      "<i class='far fa-building'></i>".html_safe
+    elsif sector == SECTORS[9]
+      "<i class='fas fa-faucet'></i>".html_safe
+    elsif sector == SECTORS[10]
+      "<i class='far fa-lightbulb'></i>".html_safe
+    else
+      "<i class='fas fa-question'></i>".html_safe
+    end
   end
 end
