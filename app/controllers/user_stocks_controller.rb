@@ -3,6 +3,6 @@ class UserStocksController < ApplicationController
     user_stock = UserStock.where(user: current_user, stock: params[:id]).first
     user_stock.destroy
 
-    redirect_to my_stocks_path
+    redirect_to request.referrer
   end
 end
