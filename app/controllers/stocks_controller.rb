@@ -61,7 +61,7 @@ class StocksController < ApplicationController
     stock = Stock.find(params[:format])
     stock.update_stock
 
-    redirect_to my_stocks_path
+    redirect_to request.referrer
   end
 
   def my_stocks
