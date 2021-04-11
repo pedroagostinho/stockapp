@@ -4,7 +4,7 @@ task add_revolut_stocks: :environment do
 
   stocks = Stock.all
   # user = args.user.to_i
-  user = User.find(4)
+  user = User.find(5)
 
   stocks.each do |stock|
     user_stock = UserStock.where(user: user, stock: stock)
