@@ -1,5 +1,8 @@
 {
   "name": "stockapp",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
