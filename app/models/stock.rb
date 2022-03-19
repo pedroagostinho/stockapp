@@ -72,13 +72,16 @@ class Stock < ApplicationRecord
     # stock_price = stock.quote.price
     # stock_volume = stock.quote.volume
 
-    timeseries = Alphavantage::Timeseries.new symbol: ticker, key: key, type: "daily", adjusted: true, outputsize: "full"
-    stock_price = timeseries.adjusted_close.first[1]
+    # timeseries = Alphavantage::Timeseries.new symbol: ticker, key: key, type: "daily", adjusted: true, outputsize: "full"
+    timeseries = Alphavantage::Timeseries.new symbol: ticker, key: key, type: "daily", adjusted: false, outputsize: "full"
+    # stock_price = timeseries.adjusted_close.first[1]
+    stock_price = timeseries.close.first[1]
     stock_volume = timeseries.volume.first[1]
 
     update(price: stock_price, volume: stock_volume)
 
-    price_timeseries = Hash[timeseries.adjusted_close.first(ANALYSIS_DAYS).map { |k, v| [Date.strptime(k, "%Y-%m-%d"), v.to_f] }]
+    # price_timeseries = Hash[timeseries.adjusted_close.first(ANALYSIS_DAYS).map { |k, v| [Date.strptime(k, "%Y-%m-%d"), v.to_f] }]
+    price_timeseries = Hash[timeseries.close.first(ANALYSIS_DAYS).map { |k, v| [Date.strptime(k, "%Y-%m-%d"), v.to_f] }]
     min_price = [price_timeseries.min_by { |_k, v| v }].to_h.values.first
     min_price_date = [price_timeseries.min_by { |_k, v| v }].to_h.keys.first
     max_price = [price_timeseries.max_by { |_k, v| v }].to_h.values.first
